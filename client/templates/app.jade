@@ -1,0 +1,58 @@
+doctype html
+html
+  head
+    title blog
+    script(type='text/javascript' src='/node_modules/angular/angular.min.js')
+    script(type='text/javascript' src='/node_modules/angular-ui-router/release/angular-ui-router.min.js')
+    script(type='text/javascript' src='/node_modules/jquery/dist/jquery.min.js')
+    script(type='text/javascript' src='/dist/scripts/styles/assets/javascripts/bootstrap.min.js')
+    link(rel='stylesheet', href='/dist/css/app.css')
+    script.
+      var appBlog = angular.module('appBlog', ['ui.router']);
+    script.
+      //définition des routes
+      appBlog.config(function($stateProvider, $urlRouterProvider){
+        //lorsque aucune url correspond : login
+        $urlRouterProvider.otherwise("/login")
+        //routes
+        $stateProvider
+          .state('app', {
+            url:'',
+            templateUrl: '/dist/templates/app.html',
+            controller: 'appCtrl',
+            abstract: true
+          })
+          .state('login', {
+            url:'/login',
+            templateUrl: '/dist/templates/login.html',
+            controller: 'loginCtrl'
+        });
+      });
+
+    //Différents controlleur         
+    script(type='text/javascript' src='/dist/scripts/controllers/appController.js')
+    script(type='text/javascript' src='/dist/scripts/controllers/loginController.js')
+
+  //contenu de la page  
+  body(ng-app='appBlog')
+    // NAVIGATION
+    nav.navbar.navbar-default.navbar-static-top(role='navigation')
+      ul.nav.navbar-nav
+        li
+          a.navbar-brand(ui-sref='#') Blaug
+        li
+          a Home
+        li
+          a Profile
+        li
+          a Messages
+        li
+          a About
+      ul.nav.navbar-nav.right 
+        li 
+          a Disconnect
+
+    // MAIN CONTENT
+    .container
+      //appel de l'enfant
+      div(ui-view)

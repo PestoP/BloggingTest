@@ -1,0 +1,23 @@
+@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+body {
+  margin: 0 auto;
+  max-width: 50em;
+  font-family: "Helvetica", "Arial", sans-serif;
+  line-height: 1.5;
+  padding: 4em 1em;
+  padding-top: 70px; 
+  color: #566b78;
+}
+
+h1,
+h2,
+strong {
+	margin-top: 1em;
+  padding-top: 1em;
+  color: #333;
+}
+
+.right{
+	float:right;
+}
