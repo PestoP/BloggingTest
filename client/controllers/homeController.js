@@ -1,0 +1,3 @@
+appBlog.controller('homeCtrl', [ function () {
+	// body...
+}]); 

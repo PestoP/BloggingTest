@@ -32,27 +32,51 @@ var User = require('./models/users');
 var router = express.Router();
 
 // la racine renvoie app.html
-router.get('/login', function(req, res) {
-    res.sendFile(path.join(__dirname,'../dist/templates', '/app.html'));
+router.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname,'../dist/templates', '/index.html'));
 });
 app.use(express.static(__dirname+"/.."));
+
+//route pour register
+router.route('/register')
+
+    // créé le user (POST /register)
+    .post(function(req, res) {
+        
+        var user = new User();      
+        user.username = req.body.data.username;  
+        user.password = req.body.data.password;  
+        user.admin = req.body.data.admin;  
+        user.email = req.body.data.email;  
+
+        // save le user et check si il y a des erreurs
+        user.saveAsync().then(function (success) {
+            res.json({success:true, message: 'user created!'});
+        }).catch(function (err) {
+      	   	res.status(500);
+        		res.send(err);
+    		});
+        
+    });
+
 
 //route d'authentification
 router.post('/authenticate', function(req, res) {
 
-  // find the user
+  // find the user (Post /authenticate)
   User.findOne({
-    username: req.body.username
+    username: req.body.data.username
   }, function(err, user) {
-
     if (err) throw err;
 
     if (!user) {
+      res.status(403);
       res.json({success: false});
     } else if (user) {
 
       // check si les mot de passes sont les mêmes
-      if (user.password != req.body.password) {
+      if (user.password != req.body.data.password) {
+        res.status(403);
         res.json({success: false});
       } else {
 
@@ -101,37 +125,18 @@ router.use(function(req, res, next) {
   }
 });
 
-
 //route pour user
 router.route('/user')
 
-    // créé le user (POST /user)
-    .post(function(req, res) {
-        
-        var user = new User();      
-        user.username = req.body.username;  
-        user.password = req.body.password;  
-        user.admin = req.body.admin;  
-        user.email = req.body.email;  
-
-        // save le user et check si il y a des erreurs
-        user.saveAsync().then(function (success) {
-            res.json({ message: 'user created!' });
-        }).catch(function (err) {
-        		res.send(err);
-    		});
-        
-    })
-
     //récupère un User en particulier
     .get(function(req, res) {
-    	User.find({}, function(err, users) {
-    	res.json(users);
+    	User.find({username: req.body.data.username}, function(err, user) {
+    	res.json(user);
   	})
 	});
 
 
-// REGISTER OUR ROUTES -------------------------------
+// Fin des routes -------------------------------
 
 app.use('/', router);
 
