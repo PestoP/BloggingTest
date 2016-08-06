@@ -17,6 +17,7 @@ html
     script(type='text/javascript' src='/dist/scripts/controllers/addArticleController.js')
     script(type='text/javascript' src='/dist/scripts/controllers/profileController.js')
     script(type='text/javascript' src='/dist/scripts/controllers/aboutController.js')
+    script(type='text/javascript' src='/dist/scripts/controllers/articleController.js')
 
     //Différents services
     script(type='text/javascript' src='/dist/scripts/services/loginService.js')
@@ -58,6 +59,11 @@ html
             url:'/addArticle',
             templateUrl: '/dist/templates/addArticle.html', 
             controller: 'addArticleCtrl'
+          })
+          .state('article', {
+            url:'/article',
+            templateUrl: '/dist/templates/article.html', 
+            controller: 'articleCtrl'
           });
       });
     //contenu de la page 

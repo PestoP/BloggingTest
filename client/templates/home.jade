@@ -1,3 +1,12 @@
+.row(ui-sref='article')
+  img.couvertureHome(src="https://placekitten.com/")
+  div.couvertureHome
+    h1 {{title}}
+    div.description
+
+    span.left Catégorie : {{categorie}}
+    span.right Auteur : {{auteur}}
+
 nav(aria-label='...')
   ul.pagination
     li.disabled

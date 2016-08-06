@@ -1,3 +1,3 @@
-appBlog.controller('addArticle', [ function () {
+appBlog.controller('addArticleCtrl', [ function () {
 	// body...
 }]); 
