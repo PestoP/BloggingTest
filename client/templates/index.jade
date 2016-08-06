@@ -14,6 +14,9 @@ html
     script(type='text/javascript' src='/dist/scripts/controllers/appController.js')
     script(type='text/javascript' src='/dist/scripts/controllers/loginController.js')
     script(type='text/javascript' src='/dist/scripts/controllers/homeController.js')
+    script(type='text/javascript' src='/dist/scripts/controllers/addArticleController.js')
+    script(type='text/javascript' src='/dist/scripts/controllers/profileController.js')
+    script(type='text/javascript' src='/dist/scripts/controllers/aboutController.js')
 
     //Différents services
     script(type='text/javascript' src='/dist/scripts/services/loginService.js')
@@ -40,7 +43,22 @@ html
             url:'/home',
             templateUrl: '/dist/templates/home.html',
             controller: 'homeCtrl'
-        });
+          })
+          .state('about', {
+            url:'/about',
+            templateUrl: '/dist/templates/about.html', 
+            controller: 'aboutCtrl'
+          })
+          .state('profile', {
+            url:'/profile',
+            templateUrl: '/dist/templates/profile.html', 
+            controller: 'profileCtrl'
+          })
+          .state('addArticle', {
+            url:'/addArticle',
+            templateUrl: '/dist/templates/addArticle.html', 
+            controller: 'addArticleCtrl'
+          });
       });
     //contenu de la page 
     body(ng-app='appBlog') 
@@ -52,11 +70,17 @@ html
           li 
             a(ui-sref='home') Home
           li 
-            a Profile 
+            a(ui-sref='profile') Profile 
           li 
-            a Messages 
+            a Catégorie 
           li 
-            a About 
+            a(ui-sref='addArticle') Ajouter un article 
+          li 
+            a Auteurs du moment  
+          li 
+            a Search 
+          li 
+            a(ui-sref='about') A propos 
         ul.nav.navbar-nav.right  
           li  
             a(ng-show="logout" ui-sref='login') Connect 

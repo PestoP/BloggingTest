@@ -1,0 +1,3 @@
+appBlog.controller('aboutCtrl', [ function () {
+	// body...
+}]); 
