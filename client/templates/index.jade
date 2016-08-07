@@ -74,9 +74,9 @@ html
           li 
             a.navbar-brand(ui-sref='app') Blaug 
           li 
-            a(ui-sref='home') Home
+            a(ui-sref='home') Accueil
           li 
-            a(ui-sref='profile') Profile 
+            a(ui-sref='profile') Profil 
           li.dropdown
             a.dropdown-toggle(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false') Catégorie
               .caret.icon
@@ -99,6 +99,6 @@ html
             a(ui-sref='about') A propos 
         ul.nav.navbar-nav.right  
           li  
-            a(ng-show="logout" ui-sref='login') Connect 
-            a(ng-show="!logout" ng-click='logoutF()') Disconnect 
+            a(ng-show="logout" ui-sref='login') Se connecter 
+            a(ng-show="!logout" ng-click='logoutF()') Se déconnecter 
       div(ui-view)
