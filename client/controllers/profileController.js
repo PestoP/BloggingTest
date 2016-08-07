@@ -1,0 +1,3 @@
+appBlog.controller('profileCtrl', [ function () {
+	// body...
+}]); 

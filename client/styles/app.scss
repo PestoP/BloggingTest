@@ -1,0 +1,85 @@
+@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+// variables
+$grey: #eee;
+
+// mixins
+@mixin text-truncate {
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+@import "home";
+@import "article";
+
+body {
+  margin: 0 auto;
+  max-width: 80em;
+  font-family: "Helvetica", "Arial", sans-serif;
+  line-height: 1.5;
+  padding: 4em 1em;
+  padding-top: 70px; 
+  color: #566b78;
+}
+
+h1,
+h2,
+strong {
+  color: #333;
+  text-align: center;
+}
+
+a {
+	cursor: pointer;
+}
+
+.navbar {
+	margin-bottom: 0;
+}
+
+.italique {
+	font-style : italic;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.right{
+	float:right;
+}
+
+.left{
+	float:left;
+}
+
+//formulaire
+form[role=login] {
+	color: #5d5d5d;
+	background: #f2f2f2;
+	padding: 26px;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	input, button {
+		font-size: 18px;
+		margin: 16px 0;
+	}
+
+	div {
+		text-align: center;
+	}
+}
+
+.form-control {
+	  position: relative;
+	  font-size: 16px;
+	  height: auto;
+	  padding: 10px;
+		@include box-sizing(border-box);
+
+		&:focus {
+		  z-index: 2;
+		}
+	}

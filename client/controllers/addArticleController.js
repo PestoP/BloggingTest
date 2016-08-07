@@ -1,0 +1,3 @@
+appBlog.controller('addArticleCtrl', [ function () {
+	// body...
+}]); 

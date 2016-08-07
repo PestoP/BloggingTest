@@ -1,0 +1,23 @@
+//------------- HOME------------
+.courverture-home {
+	&:hover {
+			opacity: 0.85;
+	}
+	cursor: pointer;
+	height: 320px;
+	padding-top: 7px;
+	border-bottom-style	: solid;
+	border-bottom-color: $grey;	
+	border-top-style	: solid;
+	border-top-color: $grey;	
+	img {
+		height: 300px;
+		width: 100%;
+	}
+
+	.description {
+		@include text-truncate;
+		text-align: justify;
+		height: 210px;
+	}
+}

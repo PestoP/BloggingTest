@@ -1,0 +1,94 @@
+doctype html
+html
+  head
+    title Blaug
+    script(type='text/javascript' src='/node_modules/angular/angular.min.js')
+    script(type='text/javascript' src='/node_modules/angular-ui-router/release/angular-ui-router.min.js')
+    script(type='text/javascript' src='/node_modules/jquery/dist/jquery.min.js')
+    script(type='text/javascript' src='/dist/scripts/styles/assets/javascripts/bootstrap.min.js')
+    link(rel='stylesheet', href='/dist/css/app.css')
+    script.
+      var appBlog = angular.module('appBlog', ['ui.router']);
+    
+    //Différents controlleurs         
+    script(type='text/javascript' src='/dist/scripts/controllers/appController.js')
+    script(type='text/javascript' src='/dist/scripts/controllers/loginController.js')
+    script(type='text/javascript' src='/dist/scripts/controllers/homeController.js')
+    script(type='text/javascript' src='/dist/scripts/controllers/addArticleController.js')
+    script(type='text/javascript' src='/dist/scripts/controllers/profileController.js')
+    script(type='text/javascript' src='/dist/scripts/controllers/aboutController.js')
+    script(type='text/javascript' src='/dist/scripts/controllers/articleController.js')
+
+    //Différents services
+    script(type='text/javascript' src='/dist/scripts/services/loginService.js')
+    script(type='text/javascript' src='/dist/scripts/services/tokenInterceptor.js')
+
+    script.
+      //définition des routes
+      appBlog.config(function($stateProvider, $urlRouterProvider){
+        //lorsque aucune url correspond : login
+        $urlRouterProvider.otherwise("app")
+        //routes
+        $stateProvider
+          .state('app', {
+            url:'/app',
+            templateUrl: '/dist/templates/app.html', 
+            controller: 'appCtrl'
+          })
+          .state('login', {
+            url:'/login',
+            templateUrl: '/dist/templates/login.html', 
+            controller: 'loginCtrl'
+          })
+          .state('home', {
+            url:'/home',
+            templateUrl: '/dist/templates/home.html',
+            controller: 'homeCtrl'
+          })
+          .state('about', {
+            url:'/about',
+            templateUrl: '/dist/templates/about.html', 
+            controller: 'aboutCtrl'
+          })
+          .state('profile', {
+            url:'/profile',
+            templateUrl: '/dist/templates/profile.html', 
+            controller: 'profileCtrl'
+          })
+          .state('addArticle', {
+            url:'/addArticle',
+            templateUrl: '/dist/templates/addArticle.html', 
+            controller: 'addArticleCtrl'
+          })
+          .state('article', {
+            url:'/article',
+            templateUrl: '/dist/templates/article.html', 
+            controller: 'articleCtrl'
+          });
+      });
+    //contenu de la page 
+    body(ng-app='appBlog') 
+      // NAVIGATION 
+      nav.navbar.navbar-default.navbar-static-top(role='navigation') 
+        ul.nav.navbar-nav 
+          li 
+            a.navbar-brand(ui-sref='app') Blaug 
+          li 
+            a(ui-sref='home') Home
+          li 
+            a(ui-sref='profile') Profile 
+          li 
+            a Catégorie 
+          li 
+            a(ui-sref='addArticle') Ajouter un article 
+          li 
+            a Auteurs du moment  
+          li 
+            a Search 
+          li 
+            a(ui-sref='about') A propos 
+        ul.nav.navbar-nav.right  
+          li  
+            a(ng-show="logout" ui-sref='login') Connect 
+            a(ng-show="!logout" ng-click='logoutF()') Disconnect 
+      div(ui-view)
