@@ -1,27 +1,26 @@
-.row
-  div
-    form(ng-submit="login()" role='login')
-      h2 Login to your account
-      input.form-control.input-lg(
-          type='text'
-          name='username'
-          placeholder='Username'
-          required=''
-          ng-model="username")
-      input.form-control.input-lg(
-          type='password'
-          placeholder='Password'
-          required=''
-          ng-model="password")
-      input.form-control.input-lg(
-          ng-show="register"
-          type='email'
-          placeholder='Email'
-          ng-model="email")
-      button.btn.btn-lg.btn-primary.btn-block(type='submit')
-       span(ng-show="!register") Sign in
-       span(ng-show="register") Sign up
-      div
-        a(ng-click='register=true') Create account
-        |  or 
-        a(href='#') reset password
+div
+  form(ng-submit="login()" role='login')
+    h2 Login to your account
+    input.form-control.input-lg(
+        type='text'
+        name='username'
+        placeholder='Username'
+        required=''
+        ng-model="username")
+    input.form-control.input-lg(
+        type='password'
+        placeholder='Password'
+        required=''
+        ng-model="password")
+    input.form-control.input-lg(
+        ng-show="register"
+        type='email'
+        placeholder='Email'
+        ng-model="email")
+    button.btn.btn-lg.btn-primary.btn-block(type='submit')
+     span(ng-show="!register") Sign in
+     span(ng-show="register") Sign up
+    div
+      a(ng-click='register=true') Create account
+      |  or 
+      a(href='#') reset password
