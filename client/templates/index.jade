@@ -77,8 +77,18 @@ html
             a(ui-sref='home') Home
           li 
             a(ui-sref='profile') Profile 
-          li 
-            a Catégorie 
+          li.dropdown
+            a.dropdown-toggle(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false') Catégorie
+              .caret.icon
+            ul.dropdown-menu
+              li
+                a(href='#') Sport
+              li
+                a(href='#') Livre
+              li
+                a(href='#') Chat
+              li
+                a(href='#') Vacances 
           li 
             a(ui-sref='addArticle') Ajouter un article 
           li 
