@@ -11,6 +11,7 @@ white-space: nowrap;
 }
 
 @import "home";
+@import "article";
 
 body {
   margin: 0 auto;
@@ -82,12 +83,3 @@ form[role=login] {
 		  z-index: 2;
 		}
 	}
-
-//--------------ARTICLE-----------
-.article {
-	@include text-truncate;
-	img {
-		height: 300px;
-		width: 100%;
-	}
-}
