@@ -1,0 +1,28 @@
+.profile {
+	position: relative; 
+	left: 0;
+	top: 0;
+	
+	.couverture-img {
+		height: 300px;
+		width: 100%;
+		position: relative; 
+		top: 0; 
+		left: 0;
+	}
+
+	.profile-img {
+		height: 150px;
+		// padding-top: 100px;
+		border-left-style: solid;
+		border-left-width: 2px;
+		border-left-color: white;	
+		border-top-style: solid;
+		border-top-width: 2px;
+		border-top-color: white;	
+		width: 150px;
+		position: absolute; 
+		top: 150px;
+		right: 0;
+	}
+}
