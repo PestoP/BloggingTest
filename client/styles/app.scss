@@ -1,5 +1,17 @@
 @import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+// variables
+$grey: #eee;
+
+// mixins
+@mixin text-truncate {
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+@import "home";
+
 body {
   margin: 0 auto;
   max-width: 80em;
@@ -13,13 +25,24 @@ body {
 h1,
 h2,
 strong {
-	margin-top: 1em;
   color: #333;
   text-align: center;
 }
 
 a {
 	cursor: pointer;
+}
+
+.navbar {
+	margin-bottom: 0;
+}
+
+.italique {
+	font-style : italic;
+}
+
+.text-center {
+  text-align: center;
 }
 
 .right{
@@ -59,3 +82,12 @@ form[role=login] {
 		  z-index: 2;
 		}
 	}
+
+//--------------ARTICLE-----------
+.article {
+	@include text-truncate;
+	img {
+		height: 300px;
+		width: 100%;
+	}
+}

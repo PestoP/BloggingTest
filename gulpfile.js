@@ -40,5 +40,5 @@ gulp.task('watch', function() {
 
 //tâche exécuté par défaut
 gulp.task("default", ["scripts", "styles", "templates", "watch"], function() {
-  gulp.watch("client/**/*", ["scripts", "styles", "templates", "watch"])
+  gulp.watch("client/**/*", ["scripts", "styles", "templates"])
 })

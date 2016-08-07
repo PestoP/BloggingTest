@@ -46,7 +46,6 @@ router.route('/register')
         var user = new User();      
         user.username = req.body.data.username;  
         user.password = req.body.data.password;  
-        user.admin = req.body.data.admin;  
         user.email = req.body.data.email;  
 
         // save le user et check si il y a des erreurs
