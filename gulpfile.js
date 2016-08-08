@@ -17,7 +17,7 @@ gulp.task("styles", function() {
 
 // transforme le pug (jade) en html
 gulp.task("templates", function() {
-  gulp.src("client/templates/**/*.jade")
+  gulp.src("client/templates/**/*.pug")
     .pipe(!options.production ? plumber() : gutil.noop())
     .pipe(jade({sourcemap: !options.production}))
     .pipe(gulp.dest("./dist/templates/"))
