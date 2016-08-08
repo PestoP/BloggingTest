@@ -30,7 +30,9 @@ html
       appBlog.config(function($httpProvider, $stateProvider, $urlRouterProvider){
         //lorsque aucune url correspond : login
         $urlRouterProvider.otherwise("app")
+        //Intercepte le token et le met dans la requête
         $httpProvider.interceptors.push('tokenInterceptor');
+
         //routes
         $stateProvider
           .state('app', {

@@ -1,4 +1,4 @@
-appBlog.factory('tokenInterceptor', [ "$window", '$rootScope', function ($window, $rootScope) {
+appBlog.factory('tokenInterceptor', [ "$window", '$rootScope', '$q', function ($window, $rootScope, $q) {
   return {
     'request': function (config) {
          config.headers = config.headers || {};
@@ -9,7 +9,7 @@ appBlog.factory('tokenInterceptor', [ "$window", '$rootScope', function ($window
      },
      'responseError': function (response) {
          if (response.status === 401 || response.status === 403) {
-             $state.go('login');
+             console.log("error");
          }
          return $q.reject(response);
      }
