@@ -20,8 +20,7 @@ body {
   max-width: 80em;
   font-family: "Helvetica", "Arial", sans-serif;
   line-height: 1.5;
-  padding: 4em 1em;
-  padding-top: 70px; 
+  padding: 1em 1em;
   color: #566b78;
 }
 
@@ -84,13 +83,19 @@ form[role=login] {
 }
 
 .form-control {
-	  position: relative;
-	  font-size: 16px;
-	  height: auto;
-	  padding: 10px;
-		@include box-sizing(border-box);
+  position: relative;
+  font-size: 16px;
+  height: auto;
+  padding: 10px;
+	@include box-sizing(border-box);
 
-		&:focus {
-		  z-index: 2;
-		}
+	&:focus {
+	  z-index: 2;
 	}
+}
+
+//point d'entrée
+.btn-first-page {
+	width: 20em;
+  display: inline-block;
+}
