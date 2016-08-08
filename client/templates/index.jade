@@ -5,7 +5,7 @@ html
     script(type='text/javascript' src='/node_modules/angular/angular.min.js')
     script(type='text/javascript' src='/node_modules/angular-ui-router/release/angular-ui-router.min.js')
     script(type='text/javascript' src='/node_modules/jquery/dist/jquery.min.js')
-    script(type='text/javascript' src='/dist/scripts/styles/assets/javascripts/bootstrap.min.js')
+    script(type='text/javascript' src='/dist/css/assets/javascripts/bootstrap.min.js')
     link(rel='stylesheet', href='/dist/css/app.css')
     //- petit favico 
     link(rel="shortcut icon" type="image/ico" href="../blaug.ico")
@@ -27,9 +27,10 @@ html
 
     script.
       //définition des routes
-      appBlog.config(function($stateProvider, $urlRouterProvider){
+      appBlog.config(function($httpProvider, $stateProvider, $urlRouterProvider){
         //lorsque aucune url correspond : login
         $urlRouterProvider.otherwise("app")
+        $httpProvider.interceptors.push('tokenInterceptor');
         //routes
         $stateProvider
           .state('app', {
@@ -81,7 +82,7 @@ html
             a(ui-sref='profile') Profil 
           li.dropdown
             a.dropdown-toggle(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false') Catégorie
-              .caret.icon
+              .fa.fa-caret-down.icon
             ul.dropdown-menu
               li
                 a(href='#') Sport

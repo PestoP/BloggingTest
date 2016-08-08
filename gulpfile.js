@@ -31,14 +31,17 @@ gulp.task("scripts", function() {
     .pipe(gulp.dest("./dist/scripts"))
 })
 
-// Repère les changements dans ces dossiers
-gulp.task('watch', function() {
-    gulp.watch('client/**/*.js', ['scripts']);
-    gulp.watch('client/**/*.scss', ['styles']);
-    gulp.watch('client/**/*.jade', ['templates']);
+gulp.task('icons', function() {
+    gulp.src("node_modules/font-awesome/fonts/**.*")
+      .pipe(gulp.dest("./dist/fonts/"));
+});
+
+gulp.task('bootstrap', function() {
+    gulp.src("node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js")
+      .pipe(gulp.dest("./dist/css/assets/javascripts"));
 });
 
 //tâche exécuté par défaut
-gulp.task("default", ["scripts", "styles", "templates", "watch"], function() {
+gulp.task("default", ["scripts", "styles", "templates", "icons", "bootstrap"], function() {
   gulp.watch("client/**/*", ["scripts", "styles", "templates"])
 })
