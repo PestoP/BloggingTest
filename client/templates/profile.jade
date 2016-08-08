@@ -1,6 +1,24 @@
 .profile
-	div
-		img.couverture-img(src="https://placekitten.com/1050/300" alt="Photo de courverture du profil")
-	div
-		img.profile-img.right(src="https://placekitten.com/150/150" alt="Photo de profil")
-	
+  div
+    img.couverture-img(src="https://placekitten.com/1050/300" alt="Photo de courverture du profil")
+  div
+    img.profile-img.right(src="https://placekitten.com/150/150" alt="Photo de profil")
+  .btn-group.expand(role='group', aria-label='...')
+    button.btn.btn-default(type='button' style='width: 15vw;')
+      .fa.fa-plus.icon
+      | Ajouter un article
+    button.btn.btn-default(type='button' style='width: 25vw;') 
+      .fa.fa-user.icon
+      | Informations personnelles
+    button.btn.btn-default(type='button' style='width: 15vw;') 
+      .fa.fa-heart.icon
+      | Auteur favoris
+    button.btn.btn-default(type='button' style='width: 20vw;') 
+      .fa.fa-lock.icon
+      | Confidentialité
+    button.btn.btn-default(type='button' style='width: 20vw;') 
+      .fa.fa-cog.icon
+      | Paramètres du compte
+      
+  include articleViewerTemplate.jade 
+
