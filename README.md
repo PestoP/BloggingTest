@@ -24,18 +24,23 @@ Blaug est une application de blogging permettant de devenir auteur d'article ain
 
 ### Installation dev
 
- L'application a besoin que [Node.js](https://nodejs.org/) soit installé pour démarrer.
+ L'application a besoin que [Node.js](https://nodejs.org/) et [MongoDB](https://www.mongodb.com) soit installé pour démarrer.
+
+- MongoDB
+
+	Installer MongoDB puis aller dans le dossier :
+	C:\MongoDB\Server\3.2\bin et exécuter mongod avec un terminal de commande
 
 - Installation des dépendences et démarrage serveur : 
 
  	Se placer à la racine du projet : 
 	
 	```sh
-	$ npm install -d
-	$ node serveur/serveur.js
+	$ npm install
+	$ node server/server.js
 	```
 
-- Configuration des sources : build la tâche gulp 'default'
+- Configuration des sources : build la tâche gulp 'default' ('gulp default' dans le terminal node)
 
 - Se connecter à localhost:3000
 
