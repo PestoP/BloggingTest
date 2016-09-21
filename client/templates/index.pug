@@ -26,6 +26,22 @@ html
     script(type='text/javascript' src='/dist/scripts/services/tokenInterceptor.js')
 
     script.
+      //Fonctions à éxécuter avant tout le reste
+      appBlog.run(function($rootScope, $window, loginService, $state) {
+      //permet de savoir si oui, ou non, l'individu est loggé
+        var getAuthorization = function () {
+        if (!$window.sessionStorage.token) {
+          $rootScope.logout = true;
+          $state.go("login");
+        } else {
+          $rootScope.logout = false;
+        }};
+        $rootScope.$on('$statechangestart', getAuthorization());
+        
+        $rootScope.logoutF = function () {
+          loginService.logout()
+        };  
+      })
       //définition des routes
       appBlog.config(function($httpProvider, $stateProvider, $urlRouterProvider){
         //lorsque aucune url correspond : login
