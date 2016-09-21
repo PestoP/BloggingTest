@@ -73,6 +73,16 @@ p {
 	width: 100%;
 }
 
+.center-block {
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+}
+
+.mtop-3em {
+	margin-top: 3em;
+}
+
 //formulaire
 form[role=login] {
 	color: #5d5d5d;

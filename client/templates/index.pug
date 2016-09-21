@@ -61,6 +61,10 @@ html
             templateUrl: '/dist/templates/login.html', 
             controller: 'loginCtrl'
           })
+          .state('landing', {
+            url:'/landing',
+            templateUrl: '/dist/templates/landingPage.html' 
+          })
           .state('home', {
             url:'/home',
             templateUrl: '/dist/templates/home.html',
@@ -111,11 +115,11 @@ html
               li
                 a(href='#') Vacances 
           li 
-            a(ui-sref='addArticle') Ajouter un article 
+            a(ui-sref='landing') Ajouter un article 
           li 
-            a Auteurs du moment  
+            a(ui-sref='landing') Auteurs du moment  
           li 
-            a Search 
+            a(ui-sref='landing') Search 
           li 
             a(ui-sref='about') A propos 
         ul.nav.navbar-nav.right  
