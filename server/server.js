@@ -2,6 +2,7 @@
 var http = require('http');
 var express = require('express');
 var path = require('path');
+var crypto = require('crypto');
 var bodyParser = require('body-parser');
 var Promise = require("bluebird");
 var mongoose = Promise.promisifyAll(require('mongoose'));
@@ -15,18 +16,52 @@ var config = require('../config');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.set('superSecret', config.secret); // secret variable
+app.set('superSecret', config.SECRET); // secret variable
 
 // log les requêtes dans la console
 app.use(morgan('dev'));
 
 //Se connecte à la bdd
-mongoose.connect(config.database);
+mongoose.connect(config.DATABASE);
 
 //models
 var User = require('./models/users');
 
+// =============================================================================
+// Fonctions pour hasher le mot de passe d'un user
+// =============================================================================
+/**
+ * genRandomString
+ * Génère un String aléatoire
+ */
+var genRandomString = function(){
+    return crypto.randomBytes(Math.ceil(config.SALT_WORK_FACTOR/2))
+            .toString('hex') /** convertie au format hexadecimal */
+            .slice(0, config.SALT_WORK_FACTOR);   /** retourne le nombre de lettre demandé (SALT_WORK_FACTOR) */
+};
 
+/**
+ * sha512
+ * hash le mot de passe avec sha512.
+ * @param {string} mot de passe.
+ * @param {string} salt.
+ */
+var sha512 = function(password, salt){
+    var hash = crypto.createHmac('sha512', salt); /** Hashing algorithm sha512 */
+    hash.update(password);
+    var passwordHash = hash.digest('hex');
+    return passwordHash;
+};
+ /**
+ * saltHashPassword
+ * hash et salt le mot de passe
+ */
+function saltHashPassword(user) {
+    user.salt = genRandomString(); 
+    user.password = sha512(user.password, user.salt);
+}
+
+// =============================================================================
 // ROUTES pour l'api
 // =============================================================================
 var router = express.Router();
@@ -38,25 +73,27 @@ router.get('/', function(req, res) {
 app.use(express.static(__dirname+"/.."));
 
 //route pour register
-router.route('/register')
+router.route('/register')    
+    
+// créé le user (POST /register)
+.post(function(req, res) {
+    
+    var user = new User();      
+    user.username = req.body.data.username;  
+    user.password = req.body.data.password;  
+    user.email = req.body.data.email;
+    saltHashPassword(user);  //hash le mot de passe
 
-    // créé le user (POST /register)
-    .post(function(req, res) {
-        
-        var user = new User();      
-        user.username = req.body.data.username;  
-        user.password = req.body.data.password;  
-        user.email = req.body.data.email;  
 
-        // save le user et check si il y a des erreurs
-        user.saveAsync().then(function (success) {
-            res.json({success:true, message: 'user created!'});
-        }).catch(function (err) {
-      	   	res.status(500);
-        		res.send(err);
-    		});
-        
-    });
+    // save le user et check si il y a des erreurs
+    user.saveAsync().then(function (success) {
+        res.json({success:true, message: 'user created!'});
+    }).catch(function (err) {
+  	   	res.status(500);
+    		res.send(err);
+		});
+    
+});
 
 
 //route d'authentification
@@ -73,8 +110,8 @@ router.post('/authenticate', function(req, res) {
       res.json({success: false});
     } else if (user) {
 
-      // check si les mot de passes sont les mêmes
-      if (user.password != req.body.data.password) {
+      // check si les mot de passes criptés sont les mêmes
+      if (user.password != sha512(req.body.data.password, user.salt)) {
         res.status(403);
         res.json({success: false});
       } else {
@@ -139,4 +176,4 @@ router.route('/user')
 
 app.use('/', router);
 
-app.listen(config.port);
+app.listen(config.PORT);
